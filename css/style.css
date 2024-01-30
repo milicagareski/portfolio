@@ -101,6 +101,7 @@ nav a:hover {
   min-width: 100%;
   text-align: center;
   margin-left: 15rem;
+  margin-top: -2rem;
 }
 
 .show_items {

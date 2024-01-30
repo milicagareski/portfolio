@@ -2,20 +2,27 @@ const btn = document.getElementById("nav_btn");
 let items = document.querySelector(".nav-items");
 let nav = document.getElementById("navbar");
 const home = document.getElementById("home_link");
-const nav_items = document.querySelectorAll("nav_link");
+const nav_items = document.querySelectorAll(".item");
 
+window.addEventListener("load", setNavbar);
+nav_items.forEach((item) => {
+  item.addEventListener("click", setNavbar);
+});
+window.addEventListener("resize", changeNavbar);
 btn.addEventListener("click", toggleNav);
-window.addEventListener("load", setNavbarOnLoadedPage);
-// nav_items.map((item) => {
-//   item.addEventListener("click", setNavbarOnLoadedPage);
-// });
-// window.addEventListener("resize", )
 
-function setNavbarOnLoadedPage() {
+function setNavbar() {
   items.classList.remove("show_items");
   items.classList.add("hide_items");
   nav.classList.remove("show_nav");
   nav.classList.add("hide_nav");
+}
+
+function changeNavbar() {
+  console.log(window.innerWidth);
+  if (window.innerWidth > 750) {
+    setNavbar();
+  }
 }
 
 function toggleNav() {
@@ -31,12 +38,6 @@ function toggleNav() {
     nav.classList.add("hide_nav");
   }
 }
-
-(function setDate() {
-  let date = document.getElementById("date");
-  const getDate = new Date().getFullYear();
-  date.innerHTML = getDate;
-})();
 
 (function setMySkills() {
   const html = `<i class="fa-brands fa-html5"></i>`;
@@ -60,4 +61,10 @@ function toggleNav() {
     element.innerHTML = icon;
     ul.appendChild(element);
   });
+})();
+
+(function setDate() {
+  let date = document.getElementById("date");
+  const getDate = new Date().getFullYear();
+  date.innerHTML = getDate;
 })();
