@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio_Milica_Gareski</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <script
+      src="https://kit.fontawesome.com/8b4ec3611c.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <article class="btn-wrapper">
+      <button type="button" id="nav_btn">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </article>
+    <!-- navbar -->
+    <nav id="navbar">
+      <article class="nav-items">
+        <div class="item">
+          <a href="#" class="nav_link" onclick="router('home')">Home</a>
+        </div>
+        <div class="item">
+          <a href="#" class="nav_link" onclick="router('about')">About me</a>
+        </div>
+        <div class="item">
+          <a href="#" class="nav_link" onclick="router('skills')">My skills</a>
+        </div>
+        <div class="item">
+          <a href="#" class="nav_link" onclick="router('my_work')">My work</a>
+        </div>
+        <div class="item">
+          <a href="#" class="nav_link" onclick="router('contact')">Contact</a>
+        </div>
+        <div class="item">
+          <a href="#" class="nav_link" onclick="router('admin')">Admin</a>
+        </div>
+      </article>
+    </nav>
+    <main id="container"></main>
+    <footer>
+      <p>
+        &copy; <span id="date"></span> Built by
+        <a href="">Milica Gareski</a>
+      </p>
+    </footer>
+
+    <script src="/src/app.js"></script>
+  </body>
+</html>
