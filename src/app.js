@@ -94,7 +94,7 @@ function router(page) {
         .then((response) => response.text())
         .then((contact) => {
           container.innerHTML = contact;
-          // postMessegesToDashboard();
+          displayMessege();
         })
         .catch((error) => {
           handleError();
@@ -117,6 +117,7 @@ function router(page) {
         .then((dashboard) => {
           container.innerHTML = dashboard;
           fromDashboardToHomePage();
+          getMessege();
         })
         .catch((error) => {
           handleError();
@@ -186,6 +187,29 @@ function openDashboard() {
     const btn = document.getElementById("dashboard_btn");
     btn.addEventListener("click", init);
   }
+}
+
+function displayMessege(e) {
+  const btn = document.getElementById("sent_btn");
+  btn.addEventListener("click", postMessege);
+
+  function postMessege(e) {
+    e.preventDefault();
+    const senderName = document.getElementById("name").value;
+    const senderEmail = document.getElementById("email").value;
+    const messege = document.getElementById("messege").value;
+
+    localStorage.setItem("senderName", senderName);
+    window.location.href = "admin.html";
+  }
+}
+
+function getMessege() {
+  const wrapper = document.querySelector("#messeges");
+  const messege = document.createElement("h1");
+  let newMessege = localStorage.getItem("senderName");
+  messege.innerHTML = newMessege;
+  wrapper.appendChild(messege);
 }
 
 function init() {
