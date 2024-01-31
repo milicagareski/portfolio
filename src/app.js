@@ -94,7 +94,7 @@ function router(page) {
         .then((response) => response.text())
         .then((contact) => {
           container.innerHTML = contact;
-          postMessegesToDashboard();
+          // postMessegesToDashboard();
         })
         .catch((error) => {
           handleError();
@@ -165,7 +165,7 @@ function openDashboard() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     const wrong_login = document.getElementById("wrong_login");
-    const adminPage = document.getElementById("admin");
+    const admin = document.getElementById("admin");
 
     if (username === "milicagareski" && password === "123456789") {
       fetch(`../templates/dashboard.html`)
@@ -187,28 +187,8 @@ function openDashboard() {
     btn.addEventListener("click", init);
   }
 }
-function postMessegesToDashboard() {
-  const sendBtn = document.getElementById("send_btn");
-  console.log(sendBtn);
-
-  // sendBtn.addEventListener("click", postMesseges);
-
-  // function postMesseges() {
-  //   const senderName = document.getElementById("name").value;
-  //   const senderEmail = document.getElementById("email").value;
-  //   const senderMessege = document.getElementById("messege").value;
-  // }
-}
-// function getMessege() {
-//   let messege = localStorage.getItem("name");
-//   const allMesseges = document.getElementById("info_messeges");
-//   const newMessege = document.createElement("h1");
-//   newMessege.innerHTML = messege;
-//   allMesseges.appendChild(newMessege);
-// }
 
 function init() {
-  // setMySkills()
   setDate();
   router("home");
   onLoad();
