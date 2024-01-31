@@ -12,7 +12,7 @@ btn.addEventListener("click", toggleNav);
 
 function changeNavbar() {
   if (window.innerWidth > 750) {
-    setNavbar();
+    onLoad();
   }
 }
 function onLoad() {
@@ -111,18 +111,18 @@ function router(page) {
           handleError();
         });
       break;
-    case "dashboard":
-      fetch(`../templates/${page}.html`)
-        .then((response) => response.text())
-        .then((dashboard) => {
-          container.innerHTML = dashboard;
-          fromDashboardToHomePage();
-          getMessege();
-        })
-        .catch((error) => {
-          handleError();
-        });
-      break;
+    // case "dashboard":
+    //   fetch(`../templates/${page}.html`)
+    //     .then((response) => response.text())
+    //     .then((dashboard) => {
+    //       container.innerHTML = dashboard;
+    //       fromDashboardToHomePage();
+    //       clearDashboard();
+    //     })
+    //     .catch((error) => {
+    //       handleError();
+    //     });
+    //   break;
 
     default:
       console.log("Page does not exist");
@@ -174,6 +174,7 @@ function openDashboard() {
         .then((dashboard) => {
           admin.innerHTML = dashboard;
           fromDashboardToHomePage();
+          getMessege();
         })
         .catch((error) => {
           handleError();
@@ -187,26 +188,38 @@ function openDashboard() {
     const btn = document.getElementById("dashboard_btn");
     btn.addEventListener("click", init);
   }
+  function clearDashboard() {
+    const clear_btn = document.getElementById("clear_btn");
+    console.log(clear_btn);
+    clear_btn.addEventListener("click", deleteItems);
+    function deleteItems() {
+      const messeges = document.querySelectorAll("new_messege");
+      messeges.forEach((mes) => {
+        mes.innerHTML = "";
+      });
+    }
+  }
+  // clearDashboard();
 }
 
-function displayMessege(e) {
+function displayMessege() {
   const btn = document.getElementById("sent_btn");
   btn.addEventListener("click", postMessege);
 
-  function postMessege(e) {
-    e.preventDefault();
+  function postMessege() {
     const senderName = document.getElementById("name").value;
     const senderEmail = document.getElementById("email").value;
     const messege = document.getElementById("messege").value;
 
     localStorage.setItem("senderName", senderName);
-    window.location.href = "admin.html";
+    window.location.href = "dashboard.html";
   }
 }
 
 function getMessege() {
   const wrapper = document.querySelector("#messeges");
   const messege = document.createElement("h1");
+  messege.setAttribute("class", "new_messege");
   let newMessege = localStorage.getItem("senderName");
   messege.innerHTML = newMessege;
   wrapper.appendChild(messege);
