@@ -303,8 +303,25 @@ footer a {
   text-align: center;
 }
 
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttons button {
+  margin: 1rem;
+}
+
 #dashboard_btn {
   width: 30%;
+}
+
+#username,
+#password {
+  font-size: 2rem;
+  padding: 1rem;
+  margin: 1rem;
 }
 
 @media screen and (min-width: 500px) {

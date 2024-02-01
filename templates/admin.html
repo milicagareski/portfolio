@@ -4,14 +4,13 @@
   </article>
   <article>
     <p id="wrong_login"></p>
-    <form class="form">
-      <label for="username">Login with username:</label>
-      <input type="text" placeholder="username" id="username" />
-    </form>
-    <form class="form">
-      <label for="password">Please write your password:</label>
-      <input type="number" placeholder="password" id="password" />
-    </form>
-    <button class="btn" id="login_btn" type="submit">Login</button>
+    <!-- <form class="form" method="POST" id="admin_form"> -->
+    <label for="username">Login with username:</label>
+    <input type="text" placeholder="username" id="username" />
+    <label for="password">Please write your password:</label>
+    <input type="password" placeholder="password" id="password" />
+    <!-- <button class="btn" id="login_btn" type="submit">Login</button> -->
+    <button class="btn" id="login_btn" onclick="login()">Login</button>
+    <!-- </form> -->
   </article>
 </section>

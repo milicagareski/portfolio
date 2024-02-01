@@ -8,23 +8,20 @@
   </article>
   <div class="contact-form">
     <article>
-      <form class="form">
+      <p id="success"></p>
+      <form class="form" method="POST" id="contact_form">
         <label for="name">Please write your name</label>
         <input type="text" placeholder="Name" id="name" />
-      </form>
-      <form class="form">
         <label for="email">Please write your email</label>
         <input type="email" placeholder="email" id="email" />
-      </form>
-      <form class="form">
         <label for="messege">Ask me anything</label>
         <input
           type="text"
           placeholder="Please write your messege"
           id="messege"
         />
+        <button class="btn" id="sent_btn" type="submit">Send email</button>
       </form>
-      <button class="btn" id="sent_btn" type="submit">Send email</button>
     </article>
     <article>
       <h1>contact me at the links bellow</h1>
