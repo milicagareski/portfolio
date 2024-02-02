@@ -334,6 +334,10 @@ footer a {
   margin: 1rem;
 }
 
+textarea {
+  resize: none;
+}
+
 @media screen and (min-width: 500px) {
   header #portfolio {
     font-size: 3rem;

@@ -1,14 +1,14 @@
-const btn = document.getElementById("nav_btn");
-let items = document.querySelector(".nav-items");
-let nav = document.getElementById("navbar");
-const nav_items = document.querySelectorAll(".item");
-
 window.addEventListener("load", init);
 window.addEventListener("resize", changeNavbar);
+
+const btn = document.getElementById("nav_btn");
+btn.addEventListener("click", toggleNav);
+const items = document.querySelector(".nav-items");
+const nav = document.getElementById("navbar");
+const nav_items = document.querySelectorAll(".item");
 nav_items.forEach((item) => {
   item.addEventListener("click", onLoad);
 });
-btn.addEventListener("click", toggleNav);
 
 function changeNavbar() {
   if (window.innerWidth > 750) {
@@ -44,6 +44,7 @@ function setDate() {
 
 function router(page) {
   const container = document.getElementById("container");
+
   switch (page) {
     case "home":
       fetch(`../templates/${page}.html`)
@@ -64,6 +65,7 @@ function router(page) {
           container.innerHTML = about;
         })
         .catch((error) => {
+          console.error(`Error loading HTML for ${page}`, error);
           handleError();
         });
       break;
@@ -76,9 +78,11 @@ function router(page) {
           setMySkills();
         })
         .catch((error) => {
+          console.error(`Error loading HTML for ${page}`, error);
           handleError();
         });
       break;
+
     case "my_work":
       fetch(`../templates/${page}.html`)
         .then((response) => response.text())
@@ -87,23 +91,31 @@ function router(page) {
           getApiFromGithub();
         })
         .catch((error) => {
+          console.error(`Error loading HTML for ${page}`, error);
           handleError();
         });
       break;
+
     case "contact":
       fetch(`../templates/${page}.html`)
         .then((response) => response.text())
         .then((contact) => {
           container.innerHTML = contact;
-          // displayMessage();
+          const contactBtn = document.getElementById("sent_btn");
+          contactBtn.addEventListener("click", function (event) {
+            event.preventDefault();
+            sendMessage();
+          });
         })
         .catch((error) => {
+          console.error(`Error loading HTML for ${page}`, error);
           handleError();
         });
       break;
+
     case "admin":
       const session = JSON.parse(localStorage.getItem("appSession"));
-      if (session && session.loggedIn) {
+      if (session && session.loggedIn === true) {
         fetch(`../templates/dashboard.html`)
           .then((response) => response.text())
           .then((admin) => {
@@ -111,6 +123,7 @@ function router(page) {
             openDashboard();
           })
           .catch((error) => {
+            console.error(`Error loading HTML for dashboard`, error);
             handleError();
           });
       } else {
@@ -118,8 +131,14 @@ function router(page) {
           .then((response) => response.text())
           .then((admin) => {
             container.innerHTML = admin;
+            const loginBtn = document.getElementById("login_btn");
+            loginBtn.addEventListener("click", function (event) {
+              event.preventDefault();
+              login();
+            });
           })
           .catch((error) => {
+            console.error(`Error loading HTML for admin`, error);
             handleError();
           });
       }
@@ -133,12 +152,13 @@ function router(page) {
 function login() {
   const username = document.getElementById("username");
   const password = document.getElementById("password");
+
   fetch("http://localhost:3000/login", {
     credentials: "include",
+    method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    method: "POST",
     body: [
       `username=${encodeURIComponent(username.value)}`,
       `password=${encodeURIComponent(password.value)}`,
@@ -151,6 +171,7 @@ function login() {
       };
 
       localStorage.setItem("appSession", JSON.stringify(session));
+
       if (data === "true") {
         router("admin");
       } else {
@@ -159,6 +180,7 @@ function login() {
       }
     })
     .catch((error) => {
+      console.log(error);
       handleError();
     });
 }
@@ -166,11 +188,12 @@ function login() {
 function logout() {
   fetch(`http://localhost:3000/logout`)
     .then((response) => response.text())
-    .then((data) => {
+    .then(() => {
       localStorage.removeItem("appSession");
       router("admin");
     })
     .catch((error) => {
+      console.log(error);
       handleError();
     });
 }
@@ -179,16 +202,19 @@ function sendMessage() {
   const firstname = document.getElementById("name");
   const email = document.getElementById("email");
   const message = document.getElementById("message");
+
+  requestObj = [
+    `name=${encodeURIComponent(firstname.value)}`,
+    `email=${encodeURIComponent(email.value)}`,
+    `message=${encodeURIComponent(message.value)}`,
+  ];
+
   fetch("http://localhost:3000/contact", {
+    method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    method: "POST",
-    body: [
-      `name=${encodeURIComponent(firstname.value)}`,
-      `email=${encodeURIComponent(email.value)}`,
-      `message=${encodeURIComponent(message.value)}`,
-    ].join("&"),
+    body: requestObj.join("&"),
   })
     .then((response) => response.text())
     .then((data) => {
@@ -199,6 +225,7 @@ function sendMessage() {
       message.value = "";
     })
     .catch((error) => {
+      console.log(error);
       handleError();
     });
 }
@@ -228,13 +255,14 @@ function openDashboard() {
       }
     })
     .catch((error) => {
+      console.log(error);
       handleError();
     });
 }
 
-function handleError(msg = "An Error Ocurred") {
+function handleError() {
   const container = document.getElementById("container");
-  const msgContent = `<h1 id="error">${msg}</h1>`;
+  const msgContent = `<h1 id="error">An Error Ocurred</h1>`;
   container.innerHTML = msgContent;
 }
 
@@ -268,77 +296,14 @@ function contactMe() {
       container.innerHTML = contact;
     })
     .catch((error) => {
+      console.log(error);
       handleError();
     });
 }
 
-// function openDashboard() {
-//   const btn = document.getElementById("login_btn");
-//   btn.addEventListener("click", changePage);
-
-//   function changePage() {
-//     const username = document.getElementById("username").value;
-//     const password = document.getElementById("password").value;
-//     const wrong_login = document.getElementById("wrong_login");
-//     const admin = document.getElementById("admin");
-
-//     if (username === "milicagareski" && password === "123456789") {
-//       fetch(`../templates/dashboard.html`)
-//         .then((response) => response.text())
-//         .then((dashboard) => {
-//           admin.innerHTML = dashboard;
-//           fromDashboardToHomePage();
-//           getMessage();
-//         })
-//         .catch((error) => {
-//           handleError();
-//         });
-//     } else {
-//       wrong_login.innerHTML =
-//         "Please write your username and password correctly";
-//     }
-//   }
-//   function fromDashboardToHomePage() {
-//     const btn = document.getElementById("dashboard_btn");
-//     btn.addEventListener("click", init);
-//   }
-// }
-
-// function displayMessage() {
-//   const btn = document.getElementById("sent_btn");
-//   btn.addEventListener("click", postMessage);
-
-//   function postMessage() {
-//     const senderName = document.getElementById("name").value;
-//     const senderEmail = document.getElementById("email").value;
-//     const message = document.getElementById("message").value;
-
-//     const sendMessage = [senderName, senderEmail, message];
-
-//     localStorage.setItem("sendMessage", sendMessage);
-//     const success = document.getElementById("success");
-//     success.textContent = "Thank you for contacting me";
-//     setTimeout(() => {
-//       success.textContent = "";
-//     }, 5000);
-//   }
-// }
-
-// function getMessage() {
-//   const wrapper = document.querySelector("#messages");
-//   let newMessage = localStorage.getItem("sendMessage").split(",");
-//   newMessage.map((item) => {
-//     let element = document.createElement("h1");
-//     element.setAttribute("class", "new_message");
-//     element.textContent = item;
-//     wrapper.appendChild(element);
-//   });
-// }
-
 async function getApiFromGithub() {
   const apiUrl = "https://api.github.com/users/milicagareski/repos";
   let myProjects = document.querySelector(".work_wrapper");
-
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {
@@ -352,6 +317,7 @@ async function getApiFromGithub() {
 
   function renderProjects(projects) {
     let allProjects = [];
+
     for (let project of projects) {
       console.log(project);
       for (let key in project) {
@@ -360,15 +326,18 @@ async function getApiFromGithub() {
         }
       }
     }
+
     allProjects.map((project, index) => {
       const element = document.createElement("div");
       const img = document.createElement("img");
       img.src = `../img/img-${index}.png`;
       img.alt = `project-photo`;
+
       const link = document.createElement("a");
       link.href = project;
       link.setAttribute("target", "_blank");
       link.innerHTML = "view github repo";
+
       element.appendChild(img);
       element.appendChild(link);
       myProjects.appendChild(element);
@@ -378,6 +347,6 @@ async function getApiFromGithub() {
 
 function init() {
   setDate();
-  router("home");
   onLoad();
+  router("home");
 }
