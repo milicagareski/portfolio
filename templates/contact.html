@@ -9,19 +9,23 @@
   <div class="contact-form">
     <article>
       <p id="success"></p>
-      <form class="form" method="POST" id="contact_form">
-        <label for="name">Please write your name</label>
-        <input type="text" placeholder="Name" id="name" />
-        <label for="email">Please write your email</label>
-        <input type="email" placeholder="email" id="email" />
-        <label for="messege">Ask me anything</label>
-        <input
-          type="text"
-          placeholder="Please write your messege"
-          id="messege"
-        />
-        <button class="btn" id="sent_btn" type="submit">Send email</button>
-      </form>
+      <!-- <form class="form" method="POST" id="contact_form"> -->
+      <label for="name">Please write your name</label>
+      <input type="text" placeholder="Name" id="name" />
+      <label for="email">Please write your email</label>
+      <input type="email" placeholder="email" id="email" />
+      <label for="message">Ask me anything</label>
+      <textarea
+        maxlength="100"
+        rows="9"
+        cols="40"
+        placeholder="Please write your message"
+        id="message"
+      ></textarea>
+      <button class="btn" id="sent_btn" onclick="sendMessage()">
+        Send email
+      </button>
+      <!-- </form> -->
     </article>
     <article>
       <h1>contact me at the links bellow</h1>

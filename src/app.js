@@ -95,7 +95,7 @@ function router(page) {
         .then((response) => response.text())
         .then((contact) => {
           container.innerHTML = contact;
-          displayMessege();
+          // displayMessage();
         })
         .catch((error) => {
           handleError();
@@ -108,7 +108,7 @@ function router(page) {
           .then((response) => response.text())
           .then((admin) => {
             container.innerHTML = admin;
-            // openDashboard();
+            openDashboard();
           })
           .catch((error) => {
             handleError();
@@ -118,7 +118,6 @@ function router(page) {
           .then((response) => response.text())
           .then((admin) => {
             container.innerHTML = admin;
-            // openDashboard();
           })
           .catch((error) => {
             handleError();
@@ -135,6 +134,7 @@ function login() {
   const username = document.getElementById("username");
   const password = document.getElementById("password");
   fetch("http://localhost:3000/login", {
+    credentials: "include",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
@@ -164,11 +164,75 @@ function login() {
 }
 
 function logout() {
-  localStorage.removeItem("appSession");
-  router("admin");
+  fetch(`http://localhost:3000/logout`)
+    .then((response) => response.text())
+    .then((data) => {
+      localStorage.removeItem("appSession");
+      router("admin");
+    })
+    .catch((error) => {
+      handleError();
+    });
 }
 
-function handleError(msg = "404 Page Not Found") {
+function sendMessage() {
+  const firstname = document.getElementById("name");
+  const email = document.getElementById("email");
+  const message = document.getElementById("message");
+  fetch("http://localhost:3000/contact", {
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    method: "POST",
+    body: [
+      `name=${encodeURIComponent(firstname.value)}`,
+      `email=${encodeURIComponent(email.value)}`,
+      `message=${encodeURIComponent(message.value)}`,
+    ].join("&"),
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      const successMessage = document.getElementById("success");
+      successMessage.textContent = data;
+      firstname.value = "";
+      email.value = "";
+      message.value = "";
+    })
+    .catch((error) => {
+      handleError();
+    });
+}
+
+function openDashboard() {
+  fetch("http://localhost:3000/contact", {
+    credentials: "include",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const messages = document.getElementById("messages");
+      for (let item of data) {
+        mainElement = document.createElement("div");
+        mainElement.setAttribute("class", "message_item");
+        const nameElement = document.createElement("h2");
+        nameElement.textContent = `From: ${item.firstname || ""}`;
+        mainElement.appendChild(nameElement);
+        const emailElement = document.createElement("h3");
+        emailElement.textContent = `Email: ${item.email || ""}`;
+        mainElement.appendChild(emailElement);
+        const messageElement = document.createElement("p");
+        messageElement.textContent = `${item.message || ""}`;
+        mainElement.appendChild(messageElement);
+        const dividerElement = document.createElement("br");
+        mainElement.appendChild(dividerElement);
+        messages.appendChild(mainElement);
+      }
+    })
+    .catch((error) => {
+      handleError();
+    });
+}
+
+function handleError(msg = "An Error Ocurred") {
   const container = document.getElementById("container");
   const msgContent = `<h1 id="error">${msg}</h1>`;
   container.innerHTML = msgContent;
@@ -197,6 +261,17 @@ function setMySkills() {
   });
 }
 
+function contactMe() {
+  fetch(`../templates/contact.html`)
+    .then((response) => response.text())
+    .then((contact) => {
+      container.innerHTML = contact;
+    })
+    .catch((error) => {
+      handleError();
+    });
+}
+
 // function openDashboard() {
 //   const btn = document.getElementById("login_btn");
 //   btn.addEventListener("click", changePage);
@@ -213,7 +288,7 @@ function setMySkills() {
 //         .then((dashboard) => {
 //           admin.innerHTML = dashboard;
 //           fromDashboardToHomePage();
-//           getMessege();
+//           getMessage();
 //         })
 //         .catch((error) => {
 //           handleError();
@@ -229,40 +304,39 @@ function setMySkills() {
 //   }
 // }
 
-function displayMessege() {
-  const btn = document.getElementById("sent_btn");
-  btn.addEventListener("click", postMessege);
+// function displayMessage() {
+//   const btn = document.getElementById("sent_btn");
+//   btn.addEventListener("click", postMessage);
 
-  function postMessege() {
-    const senderName = document.getElementById("name").value;
-    const senderEmail = document.getElementById("email").value;
-    const messege = document.getElementById("messege").value;
+//   function postMessage() {
+//     const senderName = document.getElementById("name").value;
+//     const senderEmail = document.getElementById("email").value;
+//     const message = document.getElementById("message").value;
 
-    const sendMessege = [senderName, senderEmail, messege];
+//     const sendMessage = [senderName, senderEmail, message];
 
-    localStorage.setItem("sendMessege", sendMessege);
-    const success = document.getElementById("success");
-    success.textContent = "Thank you for contacting me";
-    setTimeout(() => {
-      success.textContent = "";
-    }, 5000);
-  }
-}
+//     localStorage.setItem("sendMessage", sendMessage);
+//     const success = document.getElementById("success");
+//     success.textContent = "Thank you for contacting me";
+//     setTimeout(() => {
+//       success.textContent = "";
+//     }, 5000);
+//   }
+// }
 
-function getMessege() {
-  const wrapper = document.querySelector("#messeges");
-  let newMessege = localStorage.getItem("sendMessege").split(",");
-  newMessege.map((item) => {
-    let element = document.createElement("h1");
-    element.setAttribute("class", "new_messege");
-    element.textContent = item;
-    wrapper.appendChild(element);
-  });
-}
+// function getMessage() {
+//   const wrapper = document.querySelector("#messages");
+//   let newMessage = localStorage.getItem("sendMessage").split(",");
+//   newMessage.map((item) => {
+//     let element = document.createElement("h1");
+//     element.setAttribute("class", "new_message");
+//     element.textContent = item;
+//     wrapper.appendChild(element);
+//   });
+// }
 
 async function getApiFromGithub() {
   const apiUrl = "https://api.github.com/users/milicagareski/repos";
-  let urlProjects = [];
   let myProjects = document.querySelector(".work_wrapper");
 
   try {
@@ -279,6 +353,7 @@ async function getApiFromGithub() {
   function renderProjects(projects) {
     let allProjects = [];
     for (let project of projects) {
+      console.log(project);
       for (let key in project) {
         if (key === "html_url") {
           allProjects.push(project[key]);

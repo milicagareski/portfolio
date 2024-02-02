@@ -135,6 +135,23 @@ header #portfolio {
   animation: portfolio-animation 10s ease infinite;
 }
 
+textarea {
+  resize: none;
+}
+
+#name,
+#email {
+  font-size: 1.4rem;
+  padding: 1rem;
+}
+
+#message,
+#name,
+#email {
+  margin: 1rem;
+  padding: 1rem;
+}
+
 @keyframes portfolio-animation {
   10% {
     color: #d42811;
@@ -299,7 +316,7 @@ footer a {
   align-items: center;
 }
 
-#info_messeges {
+#info_messages {
   text-align: center;
 }
 
