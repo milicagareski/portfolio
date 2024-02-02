@@ -134,24 +134,17 @@ header #portfolio {
   letter-spacing: 0.5rem;
   animation: portfolio-animation 10s ease infinite;
 }
-
-textarea {
-  resize: none;
-}
-
 #name,
-#email {
-  font-size: 1.4rem;
-  padding: 1rem;
-}
-
-#message,
-#name,
-#email {
+#email,
+#message {
+  font-size: 1.5rem;
   margin: 1rem;
   padding: 1rem;
 }
 
+#message {
+  padding: 3rem 1rem;
+}
 @keyframes portfolio-animation {
   10% {
     color: #d42811;
