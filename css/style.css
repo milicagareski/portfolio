@@ -1,11 +1,11 @@
 @font-face {
   font-family: myFont;
-  src: url(/fonts/Neon.ttf);
+  src: url(../fonts/Neon.ttf);
 }
 
 @font-face {
   font-family: secondFont;
-  src: url(/fonts/Caramel.ttf);
+  src: url(../fonts/Caramel.ttf);
 }
 
 body {
