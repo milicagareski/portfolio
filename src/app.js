@@ -115,7 +115,7 @@ function router(page) {
 
     case "admin":
       const session = JSON.parse(localStorage.getItem("appSession"));
-      if (session && session.loggedIn === true) {
+      if (session && session.loggedIn === "true") {
         fetch(`../templates/dashboard.html`)
           .then((response) => response.text())
           .then((admin) => {
