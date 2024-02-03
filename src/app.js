@@ -153,7 +153,7 @@ function login() {
   const username = document.getElementById("username");
   const password = document.getElementById("password");
 
-  fetch("http://localhost:3000/login", {
+  fetch("https://portfolio-backend-milicagareski.onrender.com/login", {
     credentials: "include",
     method: "POST",
     headers: {
@@ -186,7 +186,7 @@ function login() {
 }
 
 function logout() {
-  fetch(`http://localhost:3000/logout`)
+  fetch(`https://portfolio-backend-milicagareski.onrender.com/logout`)
     .then((response) => response.text())
     .then(() => {
       localStorage.removeItem("appSession");
@@ -209,7 +209,7 @@ function sendMessage() {
     `message=${encodeURIComponent(message.value)}`,
   ];
 
-  fetch("http://localhost:3000/contact", {
+  fetch("https://portfolio-backend-milicagareski.onrender.com/contact", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -231,7 +231,7 @@ function sendMessage() {
 }
 
 function openDashboard() {
-  fetch("http://localhost:3000/contact", {
+  fetch("https://portfolio-backend-milicagareski.onrender.com/contact", {
     credentials: "include",
   })
     .then((response) => response.json())
@@ -319,7 +319,6 @@ async function getApiFromGithub() {
     let allProjects = [];
 
     for (let project of projects) {
-      console.log(project);
       for (let key in project) {
         if (key === "html_url") {
           allProjects.push(project[key]);
