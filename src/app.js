@@ -264,6 +264,7 @@ function handleError() {
   const container = document.getElementById("container");
   const msgContent = `<h1 id="error">An Error Ocurred</h1>`;
   container.innerHTML = msgContent;
+  localStorage.removeItem("appSession");
 }
 
 function setMySkills() {
