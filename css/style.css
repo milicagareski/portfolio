@@ -357,6 +357,10 @@ textarea {
   resize: none;
 }
 
+#logout_btn {
+  border: 1px solid #daad86;
+}
+
 @media screen and (min-width: 500px) {
   header #portfolio {
     font-size: 4rem;
