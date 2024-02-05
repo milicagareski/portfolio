@@ -329,6 +329,7 @@ async function getApiFromGithub() {
 
     allProjects.map((project, index) => {
       const element = document.createElement("div");
+      element.setAttribute("class", "project-info");
       const img = document.createElement("img");
       img.src = `../img/img-${index}.png`;
       img.alt = `project-photo`;
@@ -336,6 +337,7 @@ async function getApiFromGithub() {
       const link = document.createElement("a");
       link.href = project;
       link.setAttribute("target", "_blank");
+      link.setAttribute("class", "github_link");
       link.innerHTML = "view github repo";
 
       element.appendChild(img);
