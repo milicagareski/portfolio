@@ -206,7 +206,7 @@ function sendMessage() {
   const provideEmail = document.getElementById("provideEmail");
   const provideMessage = document.getElementById("provideMessage");
 
-  if (firstname && email && message) {
+  if (firstname.value && email.value && message.value) {
     requestObj = [
       `name=${encodeURIComponent(firstname.value)}`,
       `email=${encodeURIComponent(email.value)}`,
@@ -224,9 +224,12 @@ function sendMessage() {
       .then((data) => {
         const successMessage = document.getElementById("success");
         successMessage.textContent = data;
-        firstname.value = "";
-        email.value = "";
-        message.value = "";
+        setTimeout(() => {
+          firstname.value = "";
+          email.value = "";
+          message.value = "";
+          successMessage = "";
+        }, 4000);
       })
       .catch((error) => {
         console.log(error);
@@ -236,6 +239,12 @@ function sendMessage() {
     provideName.textContent = "Write your name";
     provideEmail.textContent = "Write your email";
     provideMessage.textContent = "Write your message";
+
+    setTimeout(() => {
+      provideName.textContent = "";
+      provideEmail.textContent = "";
+      provideMessage.textContent = "";
+    }, 4000);
   }
 }
 

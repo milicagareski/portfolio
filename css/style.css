@@ -361,13 +361,19 @@ textarea {
   border: 1px solid #daad86;
 }
 
+#provideName,
+#provideEmail,
+#provideMessage {
+  color: rgb(124, 23, 23);
+  font-size: 1.5rem;
+}
 @media screen and (min-width: 500px) {
   header #portfolio {
     font-size: 4rem;
   }
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 860px) {
   nav {
     min-height: 5rem;
     margin: 1rem 0;
@@ -439,3 +445,6 @@ textarea {
     margin-top: 0;
   }
 }
+/* @media screen and (min-width: 1440px) {
+  background-image: url("/");
+} */
