@@ -202,9 +202,9 @@ function sendMessage() {
   const firstname = document.getElementById("name");
   const email = document.getElementById("email");
   const message = document.getElementById("message");
-  const senderName = document.getElementById("senderName");
-  const senderEmail = document.getElementById("senderEmail");
-  const senderMessage = document.getElementById("senderMessage");
+  const provideName = document.getElementById("provideName");
+  const provideEmail = document.getElementById("provideEmail");
+  const provideMessage = document.getElementById("provideMessage");
 
   if (firstname && email && message) {
     requestObj = [
@@ -227,18 +227,15 @@ function sendMessage() {
         firstname.value = "";
         email.value = "";
         message.value = "";
-        senderName.textContent = "Write your name";
-        senderEmail.textContent = "Write your email";
-        senderMessage.textContent = "Write your message";
       })
       .catch((error) => {
         console.log(error);
         handleError();
       });
   } else {
-    senderName.textContent = "Write your name";
-    senderEmail.textContent = "Write your email";
-    senderMessage.textContent = "Write your message";
+    provideName.textContent = "Write your name";
+    provideEmail.textContent = "Write your email";
+    provideMessage.textContent = "Write your message";
   }
 }
 
