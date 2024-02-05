@@ -279,11 +279,17 @@ function openDashboard() {
 }
 
 function deleteMessages() {
-  fetch(`https://portfolio-backend-milicagareski.onrender.com/delete`)
+  fetch(`https://portfolio-backend-milicagareski.onrender.com/delete`, {
+    credentials: "include",
+  })
     .then((response) => response.text())
     .then((data) => {
       const messages = document.getElementById("messages");
-      messages.innerHTML = data;
+      if (data) {
+        messages.innerHTML = "";
+      } else {
+        throw new Error("Could not delete messages");
+      }
     })
     .catch((error) => {
       console.log(error);
