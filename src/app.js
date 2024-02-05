@@ -202,6 +202,9 @@ function sendMessage() {
   const firstname = document.getElementById("name");
   const email = document.getElementById("email");
   const message = document.getElementById("message");
+  const senderName = document.getElementById("senderName");
+  const senderEmail = document.getElementById("senderEmail");
+  const senderMessage = document.getElementById("senderMessage");
 
   requestObj = [
     `name=${encodeURIComponent(firstname.value)}`,
@@ -223,6 +226,9 @@ function sendMessage() {
       firstname.value = "";
       email.value = "";
       message.value = "";
+      senderName.textContent = "Write your name";
+      senderEmail.textContent = "Write your email";
+      senderMessage.textContent = "Write your message";
     })
     .catch((error) => {
       console.log(error);

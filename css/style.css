@@ -6,15 +6,10 @@ body {
   box-sizing: border-box;
   font-size: 2rem;
   font-family: "Manjari", sans-serif;
-  color: #1b3268;
+  color: white;
   font-weight: 400;
   text-align: center;
-  background: rgb(238, 174, 202);
-  background: radial-gradient(
-    circle,
-    rgba(238, 174, 202, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
-  );
+  background: #659dbd;
   min-height: 100vh;
   width: 100vw;
   display: flex;
@@ -48,6 +43,7 @@ h1 {
   text-transform: uppercase;
   font-size: 3rem;
   text-align: center;
+  color: #fbeec1;
 }
 header {
   display: flex;
@@ -74,17 +70,21 @@ nav {
   padding: 2rem;
 }
 #nav_btn {
-  background-color: #561b68;
-  border: 5px solid #904c77;
+  background-color: #daad86;
+  color: white;
+  border: 5px solid #daad86;
   border-radius: 20%;
   padding: 0.3rem;
   cursor: pointer;
   transition: all linear 0.5s;
 }
+.nav_link {
+  color: #fbeec1;
+}
 #nav_btn:hover {
   transform: scale(1.5);
-  background-color: #904c77;
-  color: #561b68;
+  background-color: #daad86;
+  color: #fbeec1;
 }
 nav a {
   text-decoration: none;
@@ -109,7 +109,7 @@ nav a:hover {
 .item {
   margin: 2rem;
   padding-top: 1rem;
-  border-top: 2px solid #561b68;
+  border-top: 2px solid #fbeec1;
   font-size: 2rem;
 }
 header h1 {
@@ -130,29 +130,34 @@ header #portfolio {
 #message {
   margin: 1rem;
   padding: 1rem;
+  border: 1px solid #daad86;
 }
 
 #message {
   padding: 3rem 1rem;
 }
+
+footer a {
+  color: #fbeec1;
+}
 @keyframes portfolio-animation {
   10% {
-    color: #561b68;
+    color: #fbeec1;
     letter-spacing: 5px;
   }
 
   35% {
-    color: #80144f;
+    color: #bc986a;
     letter-spacing: 5px;
   }
 
   60% {
-    color: #70108d;
+    color: #daad86;
     letter-spacing: 5px;
   }
 
   85% {
-    color: #991b69;
+    color: #fbeec1;
     letter-spacing: 5px;
   }
 
@@ -168,7 +173,7 @@ header #portfolio {
 #about img {
   width: 15rem;
   border-radius: 50%;
-  border: 5px solid #561b68;
+  border: 5px solid #daad86;
 }
 #about h1 {
   margin: 2rem auto;
@@ -176,6 +181,7 @@ header #portfolio {
 #about h2 {
   text-align: center;
   font-style: italic;
+  color: #fbeec1;
 }
 
 .contact_btn {
@@ -183,21 +189,20 @@ header #portfolio {
 }
 #about a,
 .btn {
-  background-color: #904c77;
-  color: #1b3268;
+  background-color: #daad86;
+  color: white;
   text-transform: uppercase;
   padding: 1rem;
   font-size: 2rem;
   margin-top: 2rem;
-  border: 2px solid #70108d;
   cursor: pointer;
   transition: all linear 1s;
 }
 #about a:hover,
 .btn:hover,
 .github_link:hover {
-  background-color: #1b3268;
-  color: #904c77;
+  background-color: #fbeec1;
+  color: #daad86;
 }
 .btn {
   margin-bottom: 3rem;
@@ -215,6 +220,7 @@ header #portfolio {
   font-size: 7rem;
   margin: 0 3rem;
   list-style-type: none;
+  color: #fbeec1;
 }
 .icon p {
   text-align: center;
@@ -224,6 +230,7 @@ header #portfolio {
 #skills span {
   font-size: 3rem;
   font-weight: bold;
+  color: #fbeec1;
 }
 .work_wrapper {
   display: flex;
@@ -245,16 +252,21 @@ header #portfolio {
   height: 15rem;
   border-radius: 2rem;
   margin-bottom: 1rem;
-  border: 3px solid #561b68;
+  border: 3px solid #fbeec1;
   padding: 0.5rem;
 }
 #my_work div a {
   border-radius: 2rem;
-  border: 2px solid #561b68;
+  border: 2px solid #daad86;
   margin: 0.5rem;
   padding: 1rem;
   text-decoration: none;
 }
+.github_link {
+  background-color: #daad86;
+  color: white;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -272,6 +284,10 @@ header #portfolio {
 .form_info {
   text-align: center;
 }
+
+#sent_btn {
+  border: 1px solid #daad86;
+}
 #social_icons {
   display: flex;
   flex-direction: row;
@@ -279,12 +295,18 @@ header #portfolio {
   align-items: center;
   font-size: 2rem;
 }
+
 #social_icons div {
   margin: 1rem;
 }
 
 #social_icons div a {
   font-size: 5rem;
+  color: white;
+}
+
+#social_icons div a:hover {
+  color: #daad86;
 }
 
 footer {
@@ -324,6 +346,11 @@ footer a {
 #password {
   padding: 1rem;
   margin: 1rem;
+  border: 1px solid #daad86;
+}
+
+#login_btn {
+  border: 1px solid #daad86;
 }
 
 textarea {
