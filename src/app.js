@@ -278,6 +278,19 @@ function openDashboard() {
     });
 }
 
+function deleteMessages() {
+  fetch(`https://portfolio-backend-milicagareski.onrender.com/delete`)
+    .then((response) => response.text())
+    .then((data) => {
+      const messages = document.getElementById("messages");
+      messages.innerHTML = "";
+    })
+    .catch((error) => {
+      console.log(error);
+      handleError();
+    });
+}
+
 function handleError() {
   const container = document.getElementById("container");
   const msgContent = `<h1 id="error">An Error Ocurred</h1>`;
