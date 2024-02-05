@@ -283,7 +283,7 @@ function deleteMessages() {
     .then((response) => response.text())
     .then((data) => {
       const messages = document.getElementById("messages");
-      messages.innerHTML = "";
+      messages.innerHTML = data;
     })
     .catch((error) => {
       console.log(error);
