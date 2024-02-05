@@ -206,34 +206,40 @@ function sendMessage() {
   const senderEmail = document.getElementById("senderEmail");
   const senderMessage = document.getElementById("senderMessage");
 
-  requestObj = [
-    `name=${encodeURIComponent(firstname.value)}`,
-    `email=${encodeURIComponent(email.value)}`,
-    `message=${encodeURIComponent(message.value)}`,
-  ];
+  if (firstname && email && message) {
+    requestObj = [
+      `name=${encodeURIComponent(firstname.value)}`,
+      `email=${encodeURIComponent(email.value)}`,
+      `message=${encodeURIComponent(message.value)}`,
+    ];
 
-  fetch("https://portfolio-backend-milicagareski.onrender.com/contact", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: requestObj.join("&"),
-  })
-    .then((response) => response.text())
-    .then((data) => {
-      const successMessage = document.getElementById("success");
-      successMessage.textContent = data;
-      firstname.value = "";
-      email.value = "";
-      message.value = "";
-      senderName.textContent = "Write your name";
-      senderEmail.textContent = "Write your email";
-      senderMessage.textContent = "Write your message";
+    fetch("https://portfolio-backend-milicagareski.onrender.com/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: requestObj.join("&"),
     })
-    .catch((error) => {
-      console.log(error);
-      handleError();
-    });
+      .then((response) => response.text())
+      .then((data) => {
+        const successMessage = document.getElementById("success");
+        successMessage.textContent = data;
+        firstname.value = "";
+        email.value = "";
+        message.value = "";
+        senderName.textContent = "Write your name";
+        senderEmail.textContent = "Write your email";
+        senderMessage.textContent = "Write your message";
+      })
+      .catch((error) => {
+        console.log(error);
+        handleError();
+      });
+  } else {
+    senderName.textContent = "Write your name";
+    senderEmail.textContent = "Write your email";
+    senderMessage.textContent = "Write your message";
+  }
 }
 
 function openDashboard() {
