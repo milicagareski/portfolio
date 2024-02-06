@@ -349,7 +349,8 @@ footer a {
   border: 1px solid #daad86;
 }
 
-#login_btn {
+#login_btn,
+#delete_btn {
   border: 1px solid #daad86;
 }
 
