@@ -311,8 +311,21 @@ function setMySkills() {
   const javascript = `<i class="fa-brands fa-js"></i>`;
   const github = `<i class="fa-brands fa-github"></i>`;
   const git = `<i class="fa-brands fa-git"></i>`;
+  const node = `<i class="fa-brands fa-node"></i>`;
+  const react = `<i class="fa-brands fa-react"></i>`;
+  const python = `<i class="fa-brands fa-python"></i>`;
 
-  const icons = [html, css, bootstrap, javascript, github, git];
+  const icons = [
+    html,
+    css,
+    bootstrap,
+    javascript,
+    github,
+    git,
+    node,
+    react,
+    python,
+  ];
 
   const skills = document.querySelector(".skills-container");
   const ul = document.createElement("ul");
