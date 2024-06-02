@@ -10,12 +10,17 @@
     <article>
       <p id="success"></p>
       <form class="form" method="POST" id="contact_form">
-        <label for="name">Please write your name</label>
+        <label for="name" id="provideName"></label>
         <input type="text" placeholder="Name" id="name" />
-        <label for="email">Please write your email</label>
+        <label for="email" id="provideEmail"></label>
         <input type="email" placeholder="Email" id="email" />
-        <label for="message">Ask me anything</label>
-        <textarea id="message" cols="21" rows="1"></textarea>
+        <label for="message" id="provideMessage"></label>
+        <textarea
+          id="message"
+          cols="21"
+          rows="3"
+          placeholder="Ask me anything"
+        ></textarea>
         <button type="submit" class="btn" id="sent_btn">Send email</button>
       </form>
     </article>
@@ -23,19 +28,19 @@
       <h1>contact me at the links bellow</h1>
 
       <article id="social_icons">
-        <div>
+        <div class="social_icon">
           <a href="https://github.com/milicagareski" target="_blank">
             <i class="fa-brands fa-github"></i>
           </a>
         </div>
-        <div>
+        <div class="social_icon">
           <a
             href="https://www.linkedin.com/in/milica-gareski-a32a995b/"
             target="_blank"
             ><i class="fa-brands fa-linkedin"></i
           ></a>
         </div>
-        <div>
+        <div class="social_icon">
           <a href="https://mail.google.com/" target="_blank"
             ><i class="fa-solid fa-envelope"></i
           ></a>

@@ -202,32 +202,50 @@ function sendMessage() {
   const firstname = document.getElementById("name");
   const email = document.getElementById("email");
   const message = document.getElementById("message");
+  const provideName = document.getElementById("provideName");
+  const provideEmail = document.getElementById("provideEmail");
+  const provideMessage = document.getElementById("provideMessage");
 
-  requestObj = [
-    `name=${encodeURIComponent(firstname.value)}`,
-    `email=${encodeURIComponent(email.value)}`,
-    `message=${encodeURIComponent(message.value)}`,
-  ];
+  if (firstname.value && email.value && message.value) {
+    requestObj = [
+      `name=${encodeURIComponent(firstname.value)}`,
+      `email=${encodeURIComponent(email.value)}`,
+      `message=${encodeURIComponent(message.value)}`,
+    ];
 
-  fetch("https://portfolio-backend-milicagareski.onrender.com/contact", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: requestObj.join("&"),
-  })
-    .then((response) => response.text())
-    .then((data) => {
-      const successMessage = document.getElementById("success");
-      successMessage.textContent = data;
-      firstname.value = "";
-      email.value = "";
-      message.value = "";
+    fetch("https://portfolio-backend-milicagareski.onrender.com/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: requestObj.join("&"),
     })
-    .catch((error) => {
-      console.log(error);
-      handleError();
-    });
+      .then((response) => response.text())
+      .then((data) => {
+        const successMessage = document.getElementById("success");
+        successMessage.textContent = data;
+        setTimeout(() => {
+          firstname.value = "";
+          email.value = "";
+          message.value = "";
+          successMessage = "";
+        }, 4000);
+      })
+      .catch((error) => {
+        console.log(error);
+        handleError();
+      });
+  } else {
+    provideName.textContent = "Write your name";
+    provideEmail.textContent = "Write your email";
+    provideMessage.textContent = "Write your message";
+
+    setTimeout(() => {
+      provideName.textContent = "";
+      provideEmail.textContent = "";
+      provideMessage.textContent = "";
+    }, 4000);
+  }
 }
 
 function openDashboard() {
@@ -260,6 +278,25 @@ function openDashboard() {
     });
 }
 
+function deleteMessages() {
+  fetch(`https://portfolio-backend-milicagareski.onrender.com/delete`, {
+    credentials: "include",
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      const messages = document.getElementById("messages");
+      if (data) {
+        messages.innerHTML = "";
+      } else {
+        throw new Error("Could not delete messages");
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      handleError();
+    });
+}
+
 function handleError() {
   const container = document.getElementById("container");
   const msgContent = `<h1 id="error">An Error Ocurred</h1>`;
@@ -274,8 +311,21 @@ function setMySkills() {
   const javascript = `<i class="fa-brands fa-js"></i>`;
   const github = `<i class="fa-brands fa-github"></i>`;
   const git = `<i class="fa-brands fa-git"></i>`;
+  const node = `<i class="fa-brands fa-node"></i>`;
+  const react = `<i class="fa-brands fa-react"></i>`;
+  const python = `<i class="fa-brands fa-python"></i>`;
 
-  const icons = [html, css, bootstrap, javascript, github, git];
+  const icons = [
+    html,
+    css,
+    bootstrap,
+    javascript,
+    github,
+    git,
+    node,
+    react,
+    python,
+  ];
 
   const skills = document.querySelector(".skills-container");
   const ul = document.createElement("ul");
@@ -329,6 +379,7 @@ async function getApiFromGithub() {
 
     allProjects.map((project, index) => {
       const element = document.createElement("div");
+      element.setAttribute("class", "project-info");
       const img = document.createElement("img");
       img.src = `../img/img-${index}.png`;
       img.alt = `project-photo`;
@@ -336,6 +387,7 @@ async function getApiFromGithub() {
       const link = document.createElement("a");
       link.href = project;
       link.setAttribute("target", "_blank");
+      link.setAttribute("class", "github_link");
       link.innerHTML = "view github repo";
 
       element.appendChild(img);

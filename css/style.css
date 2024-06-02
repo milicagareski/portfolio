@@ -1,23 +1,15 @@
-@font-face {
-  font-family: myFont;
-  src: url(/fonts/Neon.ttf);
-}
-
-@font-face {
-  font-family: secondFont;
-  src: url(/fonts/Caramel.ttf);
-}
+@import url("https://fonts.cdnfonts.com/css/manjari-2");
 
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 1.6rem;
-  font-family: myFont;
-  color: #c2541d;
+  font-size: 2rem;
+  font-family: "Manjari", sans-serif;
+  color: white;
   font-weight: 400;
-  background: url(https://images.unsplash.com/photo-1518655048521-f130df041f66?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
-    center/cover no-repeat fixed;
+  text-align: center;
+  background: #659dbd;
   min-height: 100vh;
   width: 100vw;
   display: flex;
@@ -39,21 +31,19 @@ section article {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: justify;
+  text-align: center;
 }
 section a {
   text-decoration: none;
-  color: #c2541d;
   font-style: italic;
-  font-size: 2rem;
   transition: all linear 0.8s;
 }
 h1 {
   font-weight: bold;
   text-transform: uppercase;
-  color: #7e2a0b;
-  font-size: 2rem;
+  font-size: 3rem;
   text-align: center;
+  color: #fbeec1;
 }
 header {
   display: flex;
@@ -80,25 +70,27 @@ nav {
   padding: 2rem;
 }
 #nav_btn {
-  font-size: 1.5rem;
-  background-color: #c2541d;
-  border: 1px solid #c2541d;
+  background-color: #daad86;
+  color: white;
+  border: 5px solid #daad86;
   border-radius: 20%;
   padding: 0.3rem;
   cursor: pointer;
   transition: all linear 0.5s;
 }
+.nav_link {
+  color: #fbeec1;
+}
 #nav_btn:hover {
   transform: scale(1.5);
+  background-color: #daad86;
+  color: #fbeec1;
 }
 nav a {
-  font-size: 2rem;
-  color: #972a03;
   text-decoration: none;
 }
 nav a:hover {
   text-decoration: underline;
-  color: #3b1305;
 }
 
 .nav-items {
@@ -117,53 +109,56 @@ nav a:hover {
 .item {
   margin: 2rem;
   padding-top: 1rem;
-  border-top: 2px solid #3b1305;
+  border-top: 2px solid #fbeec1;
+  font-size: 2rem;
 }
 header h1 {
   text-align: center;
   font-style: italic;
-  color: #7e2a0b;
-  font-size: 2rem;
   letter-spacing: 0.2rem;
   margin-top: -2rem;
 }
 header #portfolio {
-  font-size: 2rem;
-  padding: 1rem;
+  font-size: 2.8rem;
   line-height: 2;
   letter-spacing: 0.5rem;
   animation: portfolio-animation 10s ease infinite;
 }
+
 #name,
 #email,
 #message {
-  font-size: 1.5rem;
   margin: 1rem;
   padding: 1rem;
+  border: 1px solid #daad86;
 }
 
 #message {
   padding: 3rem 1rem;
 }
+
+footer a {
+  color: #fbeec1;
+}
 @keyframes portfolio-animation {
   10% {
-    color: #d42811;
-    letter-spacing: 10px;
+    color: #fbeec1;
+    letter-spacing: 5px;
   }
 
   35% {
-    color: hwb(7 11% 40%);
-    letter-spacing: 10px;
+    color: #bc986a;
+    letter-spacing: 5px;
   }
 
   60% {
-    color: #b84815;
-    letter-spacing: 10px;
+    color: #daad86;
+    letter-spacing: 5px;
   }
 
   85% {
-    color: #be4617;
-    letter-spacing: 10px;
+    color: #fbeec1;
+    letter-spacing: 5px;
   }
 
   0%,
@@ -178,13 +173,7 @@ header #portfolio {
 #about img {
   width: 15rem;
   border-radius: 50%;
-  border: 5px solid #c2541d;
-}
-#about,
-#my_work,
-#admin,
-footer {
-  background-color: rgb(236, 228, 218);
+  border: 5px solid #daad86;
 }
 #about h1 {
   margin: 2rem auto;
@@ -192,30 +181,28 @@ footer {
 #about h2 {
   text-align: center;
   font-style: italic;
+  color: #fbeec1;
 }
-#about p {
-  color: #c2541d;
-}
+
 .contact_btn {
   margin: 2rem auto;
 }
 #about a,
 .btn {
-  color: #3b1305;
-  font-size: 2rem;
+  background-color: #daad86;
+  color: white;
   text-transform: uppercase;
-  padding: 0.5rem;
+  padding: 1rem;
+  font-size: 2rem;
   margin-top: 2rem;
-  border: 2px solid brown;
-  background-color: #f0d7ce;
   cursor: pointer;
   transition: all linear 1s;
 }
 #about a:hover,
 .btn:hover,
-section a:hover {
-  background-color: #3b1305;
-  color: #f0d7ce;
+.github_link:hover {
+  background-color: #fbeec1;
+  color: #daad86;
 }
 .btn {
   margin-bottom: 3rem;
@@ -225,55 +212,70 @@ section a:hover {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 2rem auto;
+  margin-left: -2rem;
   align-items: center;
   justify-content: center;
 }
 .icon {
-  font-size: 3.6rem;
-  margin: 2rem;
+  font-size: 7rem;
+  margin: 0 3rem;
   list-style-type: none;
+  color: #fbeec1;
 }
 .icon p {
-  font-size: 0.8rem;
   text-align: center;
   margin-top: -0.5rem;
 }
 
 #skills span {
-  font-size: 2rem;
-  color: #3b1305;
+  font-size: 3rem;
   font-weight: bold;
+  color: #fbeec1;
 }
-#my_work div {
+.work_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.work_wrapper div {
   display: flex;
   flex-direction: column;
   text-align: center;
+  align-items: center;
+  justify-content: center;
   margin: 2rem;
-  border-bottom: 3px solid rgba(143, 40, 40, 0.575);
+  max-width: 50vw;
 }
 #my_work div img {
-  width: 20rem;
+  width: 15rem;
   height: 15rem;
   border-radius: 2rem;
   margin-bottom: 1rem;
-  border: 3px solid rgba(165, 42, 42, 0.192);
+  border: 3px solid #fbeec1;
   padding: 0.5rem;
 }
 #my_work div a {
-  border-radius: 50%;
-  border: 2px solid rgba(165, 42, 42, 0.192);
+  border-radius: 2rem;
+  border: 2px solid #daad86;
   margin: 0.5rem;
+  padding: 1rem;
+  text-decoration: none;
 }
+.github_link {
+  background-color: #daad86;
+  color: white;
+}
+
 .form {
-  color: #972a03;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.form input {
+.form input,
+#message {
   font-size: 1.5rem;
   padding: 1rem;
   margin: 1rem 0;
@@ -282,6 +284,10 @@ section a:hover {
 .form_info {
   text-align: center;
 }
+
+#sent_btn {
+  border: 1px solid #daad86;
+}
 #social_icons {
   display: flex;
   flex-direction: row;
@@ -289,12 +295,18 @@ section a:hover {
   align-items: center;
   font-size: 2rem;
 }
+
 #social_icons div {
   margin: 1rem;
 }
 
 #social_icons div a {
   font-size: 5rem;
+  color: white;
+}
+
+#social_icons div a:hover {
+  color: #daad86;
 }
 
 footer {
@@ -332,22 +344,37 @@ footer a {
 
 #username,
 #password {
-  /* font-size: 2rem; */
   padding: 1rem;
   margin: 1rem;
+  border: 1px solid #daad86;
+}
+
+#login_btn,
+#delete_btn {
+  border: 1px solid #daad86;
 }
 
 textarea {
   resize: none;
 }
 
+#logout_btn {
+  border: 1px solid #daad86;
+}
+
+#provideName,
+#provideEmail,
+#provideMessage {
+  color: rgb(124, 23, 23);
+  font-size: 1.5rem;
+}
 @media screen and (min-width: 500px) {
   header #portfolio {
-    font-size: 3rem;
+    font-size: 4rem;
   }
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 860px) {
   nav {
     min-height: 5rem;
     margin: 1rem 0;
@@ -366,9 +393,7 @@ textarea {
   .item {
     border: none;
   }
-  .nav-items a {
-    font-size: 1.5rem;
-  }
+
   #nav_btn {
     display: none;
   }
@@ -419,5 +444,12 @@ textarea {
   }
   #social_icons {
     margin-top: 0;
+  }
+}
+@media screen and (min-width: 1440px) {
+  body {
+    background: url(https://images.unsplash.com/photo-1518655048521-f130df041f66?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
+      center/cover no-repeat fixed;
+    box-shadow: inset 0 0 0 1000px rgba(101, 157, 189, 0.9);
   }
 }
